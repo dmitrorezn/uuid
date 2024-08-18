@@ -4,7 +4,7 @@
 // 	protoc        v5.27.2
 // source: uuid.proto
 
-package uuidpb
+package uuid
 
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
