@@ -1,4 +1,4 @@
-module github.com/dmitrorezn/uuidpb
+module github.com/dmitrorezn/uuid
 
 go 1.22.5
 
