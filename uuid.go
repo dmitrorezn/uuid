@@ -17,25 +17,25 @@ var (
 	Nil = Create(uuid.Nil)
 )
 
-func New() UUID {
+func New() *UUID {
 	return Create(
 		uuid.New(),
 	)
 }
 
-func Create(id uuid.UUID) UUID {
-	return UUID{
+func Create(id uuid.UUID) *UUID {
+	return &UUID{
 		Uuid: id[:],
 	}
 }
 
-func NewZero() UUID {
-	return UUID{
+func NewZero() *UUID {
+	return &UUID{
 		Uuid: make([]byte, uuidLen),
 	}
 }
 
-func Parse(s string) (UUID, error) {
+func Parse(s string) (*UUID, error) {
 	id, err := uuid.Parse(s)
 	if err != nil {
 		return UUID{}, err
@@ -44,7 +44,7 @@ func Parse(s string) (UUID, error) {
 	return Create(id), nil
 }
 
-func ParseBytes(b []byte) (UUID, error) {
+func ParseBytes(b []byte) (*UUID, error) {
 	id, err := uuid.ParseBytes(b)
 	if err != nil {
 		return UUID{}, err
@@ -53,11 +53,11 @@ func ParseBytes(b []byte) (UUID, error) {
 	return Create(id), nil
 }
 
-func MustParse(s string) UUID {
+func MustParse(s string) *UUID {
 	return Create(uuid.MustParse(s))
 }
 
-func FromBytes(b []byte) (UUID, error) {
+func FromBytes(b []byte) (*UUID, error) {
 	var uid = NewZero()
 	if err := uid.UnmarshalBinary(b); err != nil {
 		return uid, err
