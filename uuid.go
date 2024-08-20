@@ -17,6 +17,9 @@ var (
 	Nil = Create(uuid.Nil)
 )
 
+// ID - alias for *UUID
+type ID *UUID
+
 func New() *UUID {
 	return Create(
 		uuid.New(),
