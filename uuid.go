@@ -41,7 +41,7 @@ func NewZero() *UUID {
 func Parse(s string) (*UUID, error) {
 	id, err := uuid.Parse(s)
 	if err != nil {
-		return UUID{}, err
+		return nil, err
 	}
 
 	return Create(id), nil
@@ -50,7 +50,7 @@ func Parse(s string) (*UUID, error) {
 func ParseBytes(b []byte) (*UUID, error) {
 	id, err := uuid.ParseBytes(b)
 	if err != nil {
-		return UUID{}, err
+		return nil, err
 	}
 
 	return Create(id), nil
