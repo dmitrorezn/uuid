@@ -18,7 +18,7 @@ var (
 )
 
 // ID - alias for *UUID
-type ID *UUID
+type ID = *UUID
 
 func New() *UUID {
 	return Create(
