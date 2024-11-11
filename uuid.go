@@ -79,6 +79,10 @@ func (x *UUID) UUID() uuid.UUID {
 	return *(*uuid.UUID)(unsafe.Slice(unsafe.SliceData(x.Uuid), uuidLen))
 }
 
+func (x *UUID) UUIDPtr() *uuid.UUID {	
+	return (*uuid.UUID)(unsafe.Slice(unsafe.SliceData(x.Uuid), uuidLen))
+}
+
 func (x *UUID) String() string {
 	return x.UUID().String()
 }
@@ -133,15 +137,6 @@ func (x *UUID) UnmarshalBinary(data []byte) error {
 	uid := x.UUIDPtr()
 
 	return uid.UnmarshalBinary(data)
-}
-
-
-func (x *UUID) UUID() uuid.UUID {
-	return *(*uuid.UUID)(unsafe.Slice(unsafe.SliceData(x.Uuid), uuidLen))
-}
-
-func (x *UUID) UUIDPtr() *uuid.UUID {	
-	return (*uuid.UUID)(unsafe.Slice(unsafe.SliceData(x.Uuid), uuidLen))
 }
 
 func (x *UUID) Scan(src interface{}) error {
