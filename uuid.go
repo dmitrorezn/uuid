@@ -118,7 +118,7 @@ func (x *UUID) MarshalText() ([]byte, error) {
 }
 
 func (x *UUID) UnmarshalText(data []byte) error {
-	uid := x.UUID()
+	uid := x.UUIDPtr()
 
 	return uid.UnmarshalText(data)
 }
@@ -130,13 +130,22 @@ func (x *UUID) MarshalBinary() ([]byte, error) {
 }
 
 func (x *UUID) UnmarshalBinary(data []byte) error {
-	uid := x.UUID()
+	uid := x.UUIDPtr()
 
 	return uid.UnmarshalBinary(data)
 }
 
+
+func (x *UUID) UUID() uuid.UUID {
+	return *(*uuid.UUID)(unsafe.Slice(unsafe.SliceData(x.Uuid), uuidLen))
+}
+
+func (x *UUID) UUIDPtr() *uuid.UUID {	
+	return (*uuid.UUID)(unsafe.Slice(unsafe.SliceData(x.Uuid), uuidLen))
+}
+
 func (x *UUID) Scan(src interface{}) error {
-	uid := x.UUID()
+	uid := x.UUIDPtr()
 
 	return uid.Scan(src)
 }
