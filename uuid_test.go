@@ -1,9 +1,10 @@
 package uuid
 
 import (
-	"github.com/google/uuid"
 	"slices"
 	"testing"
+
+	"github.com/google/uuid"
 )
 
 func TestParse(t *testing.T) {

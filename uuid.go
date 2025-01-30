@@ -76,10 +76,10 @@ func Validate(s string) error {
 const uuidLen = len(uuid.UUID{})
 
 func (x *UUID) UUID() uuid.UUID {
-	return *(*uuid.UUID)(unsafe.Slice(unsafe.SliceData(x.Uuid), uuidLen))
+	return uuid.UUID(x.Uuid)
 }
 
-func (x *UUID) UUIDPtr() *uuid.UUID {	
+func (x *UUID) UUIDPtr() *uuid.UUID {
 	return (*uuid.UUID)(unsafe.Slice(unsafe.SliceData(x.Uuid), uuidLen))
 }
 
